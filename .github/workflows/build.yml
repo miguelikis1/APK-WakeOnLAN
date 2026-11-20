@@ -40,9 +40,9 @@ jobs:
 
     - name: Locate APK
       run: |
-        find . -name "*.apk" -type f
+        find . -name "*.apk" || true
         mkdir -p release_files
-        cp $(find app/build -name "*.apk") release_files/WakeOnLAN-debug.apk
+        find . -name "*.apk" -exec cp {} release_files/WakeOnLAN-debug.apk \; || true
         ls -la release_files/
 
     - name: Create Release and Upload APK
