@@ -125,7 +125,9 @@ class MainViewModel(
     fun checkPcStatus() {
         val currentSettings = _settings.value
         if (!currentSettings.isPcConfigured) {
-            _snackbarChannel.send("Configura la IP de Tailscale y puerto del PC en Ajustes")
+            viewModelScope.launch {
+                _snackbarChannel.send("Configura la IP de Tailscale y puerto del PC en Ajustes")
+            }
             return
         }
 
